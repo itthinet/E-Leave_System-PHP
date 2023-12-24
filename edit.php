@@ -81,17 +81,17 @@ $objCon->close();
 								<!-- <?php echo $_POST['u_email']; ?> -->
 
 								<div class="mb-3">
-									<input id="u_passwrod" type="password" class="form-control" name="u_password" value="" required="" autofocus="" placeholder="<?php echo $data['u_password']?>">
+									<input id="u_passwrod" type="text" class="form-control" name="u_password" value="<?php echo $data['u_password']?>" required="" autofocus="" placeholder="<?php echo $data['u_password']?>">
 									<div class="invalid-feedback">Password</div>
 								</div>
                                 
 								<div class="mb-3">
-									<input id="u_passwrod" type="name" class="form-control" name="u_name" value="" required="" autofocus="" placeholder="<?=$data['u_name']?>">
+									<input id="u_passwrod" type="name" class="form-control" name="u_name" value="<?=$data['u_name']?>" required="" autofocus="" placeholder="<?=$data['u_name']?>">
 									<div class="invalid-feedback">Name</div>
 								</div>
 
 								<div class="mb-3">
-									<input id="u_tel" type="tel" class="form-control" name="u_tel" value="" required="" autofocus="" placeholder="<?=$data['u_tel']?>">
+									<input id="u_tel" type="text" class="form-control" name="u_tel" value="<?=$data['u_tel']?>" required="" autofocus="" placeholder="<?=$data['u_tel']?>">
 									<div class="invalid-feedback">Tel</div>
 								</div>
                                 

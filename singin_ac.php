@@ -10,7 +10,7 @@ $objCon = connectDB(); // เชื่อมต่อฐานข้อมูล
 $email = mysqli_real_escape_string($objCon, $_POST['email']); // รับค่า email
 $password = mysqli_real_escape_string($objCon, $_POST['password']); // รับค่า password
 
-$strSQL = "SELECT * FROM user WHERE u_email = '$email' AND u_password = md5('$password')";
+$strSQL = "SELECT * FROM user WHERE u_email = '$email' AND u_password = ('$password')";
 $objQuery = mysqli_query($objCon, $strSQL);
 $row = mysqli_num_rows($objQuery);
 if($row) {

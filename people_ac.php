@@ -16,19 +16,10 @@ $objCon = connectDB();
 
 $data = $_POST;
 $u_email = $data['u_email'];
-$u_password = md5($data['u_password']); // เข้ารหัสด้วย md5 password
+$u_password = ($data['u_password']); // เข้ารหัสด้วย md5 password
 $u_level = $data['u_level'];
 //
-$strSQL = "INSERT INTO 
-user(
-    `u_email`,
-    `u_password`, 
-    `u_level`
-) VALUES (
-    '$u_email', 
-    '$u_password', 
-    '$u_level'
-)";
+$strSQL = "INSERT INTO user(`u_email`,`u_password`, `u_level`) VALUES ('$u_email', '$u_password', '$u_level')";
 
 $objQuery = mysqli_query($objCon, $strSQL) or die(mysqli_error($objCon));
 if ($objQuery) {

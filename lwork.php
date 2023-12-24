@@ -40,7 +40,7 @@ $query = mysqli_query($objCon, $sql);
 
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top py-2 mb-2 justify-content-md-between border-bottom">
     <div class="container-fluid">
-      <a class="navbar-brand text-info" href="#">BOOK a LEAVE</a>
+      <a class="navbar-brand text-info" href="#">Dev itt</a>
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -141,13 +141,25 @@ $query = mysqli_query($objCon, $sql);
                 จองวันลา
               </a>
             </li>
+            
+            <li class="nav-item">
+              <a class="nav-link text-light " href="car.php">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather text-light feather-layers align-text-bottom" aria-hidden="true">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                จองรถ
+              </a>
+            </li>
+            
           </ul>
       </nav>
 
 
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 text-light">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">Book a Leave</h1>
+          <h1 class="h2 text-info">Leave Booking System</h1>
         </div>
 
 
@@ -158,14 +170,13 @@ $query = mysqli_query($objCon, $sql);
           <h3>สถานะการจองวันลาของฉัน</h3>
 
           <div>
-            <h1>จองวันลา</h1>
             <table class="mx-1 table table-dark table-striped">
               <tr class="text-warning h5">
                 <td>Email</td>
                 <td>วันลาที่จอง</td>
                 <td>เหตุผลที่ลา</td>
-                <td>สถานะคำขอ</td>
                 <td>ความเห็นหัวหน้า</td>
+                <td>สถานะคำขอ</td>
               </tr>
 
 

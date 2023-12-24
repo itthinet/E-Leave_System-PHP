@@ -29,7 +29,7 @@ $user = $_SESSION['user_login'];
 
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top py-2 mb-2 justify-content-md-between border-bottom">
     <div class="container-fluid">
-      <a class="navbar-brand text-info" href="index.php">Dev woon</a>
+      <a class="navbar-brand text-info" href="index.php">Dev itt</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -57,7 +57,7 @@ $user = $_SESSION['user_login'];
   </nav>
 
 
-  <div class="container-fluid py-2 mb-2">
+  <div class="container-fluid d-flex flex-column flex-shrink-0 p-3 py-2 mb-2">
     <div class="row">
       <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-body-tertiary sidebar collapse">
         <div class="position-sticky pt-3 sidebar-sticky">
@@ -73,7 +73,7 @@ $user = $_SESSION['user_login'];
             </li>
 
             <?php
-/*
+            /*
               <li class="nav-item">
                 <a class="nav-link text-light" href="#">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file text-light align-text-bottom" aria-hidden="true"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
@@ -112,6 +112,18 @@ $user = $_SESSION['user_login'];
                 จองวันลา
               </a>
             </li>
+
+            <li class="nav-item">
+              <a class="nav-link text-light " href="car.php">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather text-light feather-layers align-text-bottom" aria-hidden="true">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                จองรถ
+              </a>
+            </li>
+            
           </ul>
       </nav>
 

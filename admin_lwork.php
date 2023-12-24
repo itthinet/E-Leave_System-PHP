@@ -126,7 +126,7 @@ $query = mysqli_query($objCon,$sql);
   <?php foreach($query as $data) {?>
     <tr class = "text-light ">
       <th style="display:none;"><?=$data['id']?></th>
-      <th><?=$data['user_email']?></th>
+      <th><?=$data['u_email']?></th>
       <th><?=$data['leave_date']?></th>
       <th><?=$data['leave_reason']?></th>
       <th><?=$data['status_reason']?></th>

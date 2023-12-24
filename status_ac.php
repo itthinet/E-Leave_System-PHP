@@ -36,7 +36,7 @@ function connectDB()
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // รับค่าจากฟอร์มหรือแหล่งข้อมูล
     $id = $_POST["id"];
-    $user_email = $_POST["user_email"];
+    $u_email = $_POST["u_email"];
     $leave_date = $_POST["leave_date"];
     $leave_reason = $_POST["leave_reason"];
     $status_a = $_POST["status_a"];
@@ -56,7 +56,7 @@ if ($result->num_rows > 0) {
         leaves 
     SET 
         id='$id',
-        user_email='$user_email',
+        u_email='$u_email',
         leave_date='$leave_date',
         leave_reason='$leave_reason',
         status_a='$status_a',

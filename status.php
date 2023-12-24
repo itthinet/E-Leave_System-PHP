@@ -78,7 +78,7 @@ $objCon->close();
 								</div>
 						<h6 class="fs-5 card-title mb-2">Email</h6>
 								<div class="mb-3">
-    								<input id="user_email" type="email" class="form-control" name="user_email" value="<?php echo $data['user_email']?>" required="" autofocus="" placeholder=""readonly>
+    								<input id="u_email" type="email" class="form-control" name="u_email" value="<?php echo $data['u_email']?>" required="" autofocus="" placeholder=""readonly>
     								<div class="invalid-feedback">Email</div>
 								</div>
 								<!-- <?php echo $_POST['user_email']; ?> -->
