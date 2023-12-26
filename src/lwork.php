@@ -171,7 +171,7 @@ $query = mysqli_query($objCon, $sql);
           ?>
             <a href="admin.php" class="me-2 btn btn-warning">ผู้ดูแลระบบ</a>
           <?php } ?>
-          <button href="logout_ac.php" class="btn btn-danger">ออกจากระบบ</button>
+          <a href="logout_ac.php" class="btn btn-danger">ออกจากระบบ</a>
         </form>
       </div>
     </div>
