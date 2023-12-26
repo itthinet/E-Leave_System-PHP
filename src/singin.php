@@ -13,6 +13,7 @@
 	<meta name="generator" content="Hugo 0.118.2">
 	<title>Signin Template · Bootstrap v5.3</title>
 
+	<!--LINK-->
 	<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
 
 	<!-- Bootstrap core CSS -->
@@ -29,7 +30,8 @@
 	<!-- CDN FROM Bootstrap WEB -->
 
 	<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-
+	<!--LINK-->
+	
 	<style>
 		.bd-placeholder-img {
 			font-size: 1.125rem;

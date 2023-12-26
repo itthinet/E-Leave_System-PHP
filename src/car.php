@@ -7,7 +7,6 @@ if (!isset($_SESSION['user_login'])) { // ถ้าไม่ได้เข้�
 
 $user = $_SESSION['user_login'];
 
-
 //เชื่อมต่อกับ function และ สร้างตัวแปร และนำมาแสดง--------------------------
 include_once('./function.php');
 $objCon = connectDB();
@@ -15,239 +14,247 @@ $sql = "SELECT * FROM car_db";
 $query = mysqli_query($objCon, $sql);
 // END -------------------------
 
-
-
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Reservation System</title>
+    <script src="../assets/js/color-modes.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.118.2">
+    <title>"W_P ONE"</title>
+
+    <!--LINK-->
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="../css/style.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="../js/style.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <!-- SWEET Aleart -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- SWEET Aleart -->
+
+    <!-- CDN FROM Bootstrap WEB -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- CDN FROM Bootstrap WEB -->
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!--LINK-->
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        .b-example-divider {
+            width: 100%;
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .btn-bd-primary {
+            --bd-violet-bg: #712cf9;
+            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+            --bs-btn-font-weight: 600;
+            --bs-btn-color: var(--bs-white);
+            --bs-btn-bg: var(--bd-violet-bg);
+            --bs-btn-border-color: var(--bd-violet-bg);
+            --bs-btn-hover-color: var(--bs-white);
+            --bs-btn-hover-bg: #6528e0;
+            --bs-btn-hover-border-color: #6528e0;
+            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+            --bs-btn-active-color: var(--bs-btn-hover-color);
+            --bs-btn-active-bg: #5a23c8;
+            --bs-btn-active-border-color: #5a23c8;
+        }
+
+        .bd-mode-toggle {
+            z-index: 1500;
+        }
+
+        .bd-mode-toggle .dropdown-menu .active .bi {
+            display: block !important;
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="../css/offcanvas-navbar.css" rel="stylesheet">
 </head>
 
-<body class="bg-dark">
+<body class="bg-body-tertiary">
 
-
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top py-2 mb-2 justify-content-md-between border-bottom">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
         <div class="container-fluid">
-            <a class="navbar-brand text-info" href="#">Dev itt</a>
-            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="#">Profile_One</a>
+            <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="navbar-collapse collapse" id="navbarColor01">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#"> </a>
+            <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"></a>
+                        <a class="nav-link" href="#">Notifications</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"></a>
+                        <a class="nav-link" href="#">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Switch account</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Settings</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
                     </li>
                 </ul>
-                <form class="form-inline d-flex ms-auto justify-content-end">
+                <form class="d-flex" role="search">
                     <?php if ($user['level'] == 'administrator') { // แสดงลิงค์ไปยังหน้าผู้ดูแลระบบเมื่อผู้ใช้เป็นแอดมิน 
                     ?>
-                        <a href="admin.php" class="btn btn-warning me-2">หน้าสำหรับผู้ดูแลระบบ</a>
+                        <a href="admin.php" class="me-2 btn btn-warning">ผู้ดูแลระบบ</a>
                     <?php } ?>
-                    <a href="logout_ac.php" class="btn btn-danger">ออกจากระบบ</a>
+                    <button href="logout_ac.php" class="btn btn-danger">ออกจากระบบ</button>
                 </form>
             </div>
         </div>
     </nav>
 
+    <div class="nav-scroller bg-body shadow-sm">
+        <nav class="nav" aria-label="Secondary navigation">
+            <a class="nav-link active" aria-current="page" href="index.php">ประกาศจากบริษัท</a>
+            <a class="nav-link" href="lwork.php">จองวันลา</a>
+            <a class="nav-link" href="car.php">จองรถ</a>
+            <a class="nav-link" href="#">แจ้งซ่อม</a>
+        </nav>
+    </div>
 
-    <div class="container-fluid py-2 mb-2">
-        <div class="row">
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-body-tertiary sidebar collapse">
-                <div class="position-sticky pt-3 sidebar-sticky">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active text-light" aria-current="page" href="index.php">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home text-light align-text-bottom" aria-hidden="true">
-                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                                </svg>
-                                Home
-                            </a>
-                        </li>
-
-
-                        <?php
-                        /*
-            <li class="nav-item">
-              <a class="nav-link text-light" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file text-light align-text-bottom" aria-hidden="true">
-                  <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
-                  <polyline points="13 2 13 9 20 9"></polyline>
-                </svg>
-                *
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart text-light align-text-bottom" aria-hidden="true">
-                  <circle cx="9" cy="21" r="1"></circle>
-                  <circle cx="20" cy="21" r="1"></circle>
-                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                </svg>
-                *
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users text-light align-text-bottom" aria-hidden="true">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="9" cy="7" r="4"></circle>
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                </svg>
-                *
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2 text-light align-text-bottom" aria-hidden="true">
-                  <line x1="18" y1="20" x2="18" y2="10"></line>
-                  <line x1="12" y1="20" x2="12" y2="4"></line>
-                  <line x1="6" y1="20" x2="6" y2="14"></line>
-                </svg>
-                *
-              </a>
-            </li>
-*/
-                        ?>
-
-
-                        <li class="nav-item">
-                            <a class="nav-link text-light " href="lwork.php">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather text-light feather-layers align-text-bottom" aria-hidden="true">
-                                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                                    <polyline points="2 17 12 22 22 17"></polyline>
-                                    <polyline points="2 12 12 17 22 12"></polyline>
-                                </svg>
-                                จองวันลา
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-light " href="car.php">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather text-light feather-layers align-text-bottom" aria-hidden="true">
-                                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                                    <polyline points="2 17 12 22 22 17"></polyline>
-                                    <polyline points="2 12 12 17 22 12"></polyline>
-                                </svg>
-                                จองรถ
-                            </a>
-                        </li>
-
-                    </ul>
-            </nav>
-
-
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 text-light">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2 text-info">Car Reservation System</h1>
-                </div>
-
-
-
+    <main class="container">
+        <div class="my-3 p-3 bg-body rounded shadow-sm">
+            <h6 class="border-bottom pb-2 mb-0">สถานะการจองรถ</h6>
+            <div class="d-flex text-body-secondary pt-3">
                 <!-- ตาราง แสดง Data -->
-                <div class="text-light container-fluid">
-                    <h3>สถานะรถ</h3>
+                <table class="pb-3 mb-0 small lh-sm border-bottom table table-striped">
+                    <tr class="text-warning">
+                        <td>ประเภทรถ</td>
+                        <td>สถานะรถ</td>
+                        <td>ผู้ใช้งาน</td>
+                    </tr>
 
-                    <div>
-                        <table class="mx-1 table table-dark">
-                            <tr class="text-warning h5">
-                                <td>ประเภทรถ</td>
-                                <td>สถานะรถ</td>
-                                <td>ผู้ใช้งาน</td>
-                            </tr>
+                    <?php foreach ($query as $data) { ?>
+                        <tr class="text-light ">
+                            <th><?= $data['type_car'] ?></th>
+                            <th><?= $data['status_car'] ?></th>
+                            <th><?= $data['users'] ?></th>
+                            </th>
+                        </tr>
+                    <?php } ?>
+                </table>
+                <!-- END ตาราง แสดง data -->
+            </div>
 
-                            <?php foreach ($query as $data) { ?>
-                                <tr class="text-light ">
-                                    <th><?= $data['type_car'] ?></th>
-                                    <th><?= $data['status_car'] ?></th>
-                                    <th><?= $data['users'] ?></th>
-                                    </th>
-                                </tr>
-                            <?php } ?>
-                        </table>
-                    </div>
-                    <!-- END ตาราง แสดง data -->
-                </div>
-
-
-
-
-
-
-                <div class="container-fluid">
-                    <h3>จองรถ</h3>
-
+            <div class="my-3 p-3 bg-body rounded shadow-sm">
+                <h6 class="border-bottom pb-2 mb-0">จองรถ</h6>
+                <div class="d-flex text-body-secondary pt-3">
 
                     <form method="POST" action="car_ac.php">
                         <div class="mb-3">
-                            <label for="type_car">เลือกรถ</label>
                             <select id="type_car" name="type_car" class="text-dark">
                                 <option selected disabled>---ประเภทรถ---</option>
                                 <option value="1">รถกระบะ กก3523</option>
                                 <option value="2">รถตู้ ขถ7846</option>
                                 <option value="3">รถเก๋ง จก0943</option>
                             </select>
+                            <label for="type_car">เลือกรถ</label>
                         </div>
-
-                        <div class="mb-3">
-                            <label for="date_car">วันที่ใช้</label>
+                        <div class="mb-2">
                             <input id="date_car" type="date" name="date_car">
+                            <label for="date_car">วันที่ใช้</label>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="time-car1">เวลาที่ใช้งาน</label>
+                        <div class="mb-2">
                             <input id="time-car1" type="time" name="time_car1">
-                            <label>--ถึง--</label>
+                            <br>
+                            <label>--ถึง-- เวลาที่ใช้งาน</label>
+                            <br>
                             <input id="time-car2" type="time" name="time_car2">
                         </div>
 
-                        <div class="mb-3">
-                            <label for="user">ผู้ใช้งาน</label>
+                        <div class="mb-2">
                             <input id="user" type="text" name="users">
+                            <label for="user">ผู้ใช้งาน</label>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-2">
                             <label for="status_car">จองรถ</label>
                             <input id="status_car" type="checkbox" name="status_car" value="จอง">
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-2">
                             <label></label>
-                            <input onclick="return confirm('ยืนยันการส่งคำขอ')" class="btn-sm btn btn-outline-success mx-2 mb-1" type="submit" value="ส่งคำขอ">
+                            <input onclick="return confirm('ยืนยันการส่งคำขอ')" class="btn-sm btn btn-outline-success" type="submit" value="ส่งคำขอ">
                         </div>
                     </form>
-
-
-                </div>
-        </div>
-
-
-
-
-
-
-
-        <script src="js/login.js"></script>
+    </main>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/offcanvas-navbar.js"></script>
 </body>
 
 </html>
