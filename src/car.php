@@ -183,7 +183,7 @@ $query = mysqli_query($objCon, $sql);
             <h6 class="border-bottom pb-2 mb-0">สถานะการจองรถ</h6>
             <div class="d-flex text-body-secondary pt-3">
                 <!-- ตาราง แสดง Data -->
-                <table class="pb-3 mb-0 small lh-sm border-bottom table table-striped">
+                <table class="pb-3 mb-0 small lh-sm border-bottom table table-striped text-center">
                     <tr class="text-warning">
                         <td>ประเภทรถ</td>
                         <td>สถานะรถ</td>
@@ -207,7 +207,7 @@ $query = mysqli_query($objCon, $sql);
                 <div class="d-flex text-body-secondary pt-3">
 
                     <form method="POST" action="car_ac.php">
-                        <div class="mb-3">
+                        <div class="mb-2">
                             <select id="type_car" name="type_car" class="text-dark">
                                 <option selected disabled>---ประเภทรถ---</option>
                                 <option value="1">รถกระบะ กก3523</option>

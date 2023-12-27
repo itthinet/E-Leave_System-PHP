@@ -160,7 +160,7 @@ $query = mysqli_query($objCon, $sql);
         <form class="d-flex" role="search">
           <?php if ($user['level'] == 'administrator') { // แสดงลิงค์ไปยังหน้าผู้ดูแลระบบเมื่อผู้ใช้เป็นแอดมิน 
           ?>
-            <a href="index.php" class="me-2 btn btn-primary">ผู้ดูแลระบบ</a>
+            <a href="index.php" class="me-2 btn btn-primary">ผู้ใช้งาน</a>
           <?php } ?>
           <a href="logout_ac.php" class="btn btn-danger">ออกจากระบบ</a>
         </form>
@@ -191,7 +191,7 @@ $query = mysqli_query($objCon, $sql);
       <form method="post" action="people_ac.php"> <!-- เชื่อมมม connect -->
         <!-- ตาราง แสดง database -->
         <div class="pb-3 mb-0 small lh-sm border-bottom">
-          <table class="pb-3 mb-0 small lh-sm border-bottom table table-striped">
+          <table class="pb-3 mb-0 small lh-sm border-bottom table table-striped text-center">
             <tr>
               <td>Email</td>
               <td>Password</td>

@@ -45,9 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($sql);
     $data = $result->fetch_assoc();
 
-    if ($data['status_car'] === "ว่าง") {
-        echo '<script>alert("คุณได้ทำการจองรถ")</script>';
+    if ($data['status_car'] === $data['unavailable']) {
         $updateSql = "UPDATE car_db SET date_car = '$date_car', time_car1 = '$time_car1', time_car2 = '$time_car2', status_car = '$status_car', users = '$users' WHERE type_car = '$type_car'";
+        echo '<script>alert("คุณได้ทำการจองรถ");window.location="car.php";</script>';
     } else {
         echo "การอัพเดตข้อมูลผิดพลาด: " . $conn->error;
     }

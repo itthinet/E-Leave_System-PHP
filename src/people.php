@@ -167,7 +167,7 @@ $query = mysqli_query($objCon, $sql);
         <form class="d-flex" role="search">
           <?php if ($user['level'] == 'administrator') { // แสดงลิงค์ไปยังหน้าผู้ดูแลระบบเมื่อผู้ใช้เป็นแอดมิน 
           ?>
-            <a href="index.php" class="me-2 btn btn-primary">ผู้ดูแลระบบ</a>
+            <a href="index.php" class="me-2 btn btn-primary">ผู้ใช้งาน</a>
           <?php } ?>
           <a href="logout_ac.php" class="btn btn-danger">ออกจากระบบ</a>
         </form>
@@ -248,7 +248,7 @@ $query = mysqli_query($objCon, $sql);
               <th class="text-center">
                 <form action="edit.php" method="post">
                   <input type="hidden" name="email" value="<?= $data['u_email'] ?>">
-                  <button type="submit" name="edit" class="btn-sm btn btn-outline-info mx-2 mb-1">Edit</button>
+                  <button type="submit" name="edit" class="btn btn-outline-info btn-sm mx-2 mb-1">Edit</button>
                 </form>
               </th>
             </tr>

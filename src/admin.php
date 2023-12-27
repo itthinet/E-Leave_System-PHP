@@ -157,7 +157,7 @@ if ($user['level'] != 'administrator') {
         <form class="d-flex" role="search">
           <?php if ($user['level'] == 'administrator') { // แสดงลิงค์ไปยังหน้าผู้ดูแลระบบเมื่อผู้ใช้เป็นแอดมิน 
           ?>
-            <a href="index.php" class="me-2 btn btn-primary">ผู้ดูแลระบบ</a>
+            <a href="index.php" class="me-2 btn btn-primary">ผู้ใช้งาน</a>
           <?php } ?>
           <a href="logout_ac.php" class="btn btn-danger">ออกจากระบบ</a>
         </form>

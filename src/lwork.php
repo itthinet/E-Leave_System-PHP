@@ -237,9 +237,9 @@ $query = mysqli_query($objCon, $sql);
                 <div class="mb-2">ประเภทการลา
                   <select id="leave_reason" name="leave_reason" required>
                     <option selected disabled>เลือกประเภท</option>
-                    <option value="1">ลาป่วย</option>
-                    <option value="2">ลาพักร้อน</option>
-                    <option value="3">ลากิจ</option>
+                    <option value="ลาป่วย">ลาป่วย</option>
+                    <option value="ลาพักร้อน">ลาพักร้อน</option>
+                    <option value="ลากิจ">ลากิจ</option>
                   </select>
                 </div>
 

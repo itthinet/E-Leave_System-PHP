@@ -1,3 +1,9 @@
+<?php session_start(); // เปิดใช้งาน session
+if (isset($_SESSION['user_login'])) { // ถ้าเข้าระบบอยู่
+    header("location: index.php"); // redirect ไปยังหน้า index.php
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,12 +18,6 @@
 
 <body>
     <?php
-    session_start(); // เปิดใช้งาน session
-    if (isset($_SESSION['user_login'])) { // ถ้าเข้าระบบอยู่
-        header("location: index.php"); // redirect ไปยังหน้า index.php
-        exit;
-    }
-
     include_once("./function.php");
     $objCon = connectDB(); // เชื่อมต่อฐานข้อมูล
     $email = mysqli_real_escape_string($objCon, $_POST['email']); // รับค่า email
@@ -39,7 +39,7 @@
         echo '<script>
         swal({
             title: "ยินดีต้อนรับ",
-            text: " '. $res['u_email'].' ",
+            text: " ' . $res['u_email'] . ' ",
             icon: "success"
         }).then(function() {
             window.location="index.php";
