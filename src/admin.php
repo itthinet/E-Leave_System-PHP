@@ -1,119 +1,281 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_login'])) { // ถ้าไม่ได้เข้าระบบอยู่
-    header("location: singin.php"); // redirect ไปยังหน้า login.php
-    exit;
+  header("location: singin.php"); // redirect ไปยังหน้า login.php
+  exit;
 }
 
 $user = $_SESSION['user_login'];
 if ($user['level'] != 'administrator') {
-    echo '<script>alert("สำหรับผู้ดูแลระบบเท่านั้น");window.location="index.php";</script>';
-    exit;
+  echo '<script>alert("สำหรับผู้ดูแลระบบเท่านั้น");window.location="index.php";</script>';
+  exit;
 }
-
-
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin woon</title>
-    <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="../css/style.css" rel="stylesheet">
+  <script src="../assets/js/color-modes.js"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.118.2">
+  <title>"W_P ONE"</title>
+
+  <!--LINK-->
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+
+  <!-- Bootstrap core CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="../js/style.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+  <!-- SWEET Aleart -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- SWEET Aleart -->
+
+  <!-- CDN FROM Bootstrap WEB -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!-- CDN FROM Bootstrap WEB -->
+
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <!--LINK-->
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .b-example-divider {
+      width: 100%;
+      height: 3rem;
+      background-color: rgba(0, 0, 0, .1);
+      border: solid rgba(0, 0, 0, .15);
+      border-width: 1px 0;
+      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+
+    .b-example-vr {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 100vh;
+    }
+
+    .bi {
+      vertical-align: -.125em;
+      fill: currentColor;
+    }
+
+    .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 2.75rem;
+      overflow-y: hidden;
+    }
+
+    .nav-scroller .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      margin-top: -1px;
+      overflow-x: auto;
+      text-align: center;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .btn-bd-primary {
+      --bd-violet-bg: #712cf9;
+      --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+      --bs-btn-font-weight: 600;
+      --bs-btn-color: var(--bs-white);
+      --bs-btn-bg: var(--bd-violet-bg);
+      --bs-btn-border-color: var(--bd-violet-bg);
+      --bs-btn-hover-color: var(--bs-white);
+      --bs-btn-hover-bg: #6528e0;
+      --bs-btn-hover-border-color: #6528e0;
+      --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+      --bs-btn-active-color: var(--bs-btn-hover-color);
+      --bs-btn-active-bg: #5a23c8;
+      --bs-btn-active-border-color: #5a23c8;
+    }
+
+    .bd-mode-toggle {
+      z-index: 1500;
+    }
+
+    .bd-mode-toggle .dropdown-menu .active .bi {
+      display: block !important;
+    }
+  </style>
 
 
-
-
-
-
-
+  <!-- Custom styles for this template -->
+  <link href="../css/offcanvas-navbar.css" rel="stylesheet">
 </head>
 
-<body class = "bg-dark">
+<body class="bg-body-tertiary">
 
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Profile_One</a>
+      <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top py-2 mb-2 justify-content-md-between border-bottom" >
-  <div class="container-fluid">
-    <a class="navbar-brand text-warning" href = "admin.php" xmlns="http://www.w3.org/2000/svg">Administrator By.Dev woon</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="mynavbar">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)">Link</a>
-        </li>
-      </ul>
-      <form class="d-flex" >
-      <?php if ($user['level'] == 'administrator') { // แสดงลิงค์ไปยังหน้าผู้ดูแลระบบเมื่อผู้ใช้เป็นแอดมิน ?>
-                <a href="index.php" class="btn btn-primary me-2">กลับสู่หน้าผู้ใช้งาน</a>
-                <?php } ?>
-                <a href="logout_ac.php" class="btn btn-danger">ออกจากระบบ</a>
-      </form>
+      <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <?php if ($user['level'] == 'administrator') { // แสดงลิงค์ไปยังหน้าผู้ดูแลระบบเมื่อผู้ใช้เป็นแอดมิน 
+          ?>
+            <a href="index.php" class="me-2 btn btn-primary">ผู้ดูแลระบบ</a>
+          <?php } ?>
+          <a href="logout_ac.php" class="btn btn-danger">ออกจากระบบ</a>
+        </form>
+      </div>
     </div>
+  </nav>
+
+  <div class="nav-scroller bg-body shadow-sm">
+    <nav class="nav" aria-label="Secondary navigation">
+      <a class="nav-link active" aria-current="page" href="admin.php">หน้าแรก</a>
+      <a class="nav-link" href="people.php">People</a>
+      <a class="nav-link" href="total_user.php">Total User</a>
+      <a class="nav-link" href="admin_lwork.php">Leave</a>
+    </nav>
   </div>
-</nav>
 
-        
-    <div class="container-fluid py-2 mb-2">
-      <div class="row">
-        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-body-tertiary sidebar collapse">
-          <div class="position-sticky pt-3 sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active text-light" aria-current="page" href="admin.php">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home text-light align-text-bottom" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                  Admin
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-light" href="people.php">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users text-light align-text-bottom" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                  People
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-light" href="total_user.php">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2 text-light align-text-bottom" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-                  Total User
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-light"  href="admin_lwork.php">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather text-light feather-layers align-text-bottom" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-                  Leave
-                </a>
-              </li>
-            </ul>
-        </nav>
-    
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 text-light">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">HOME</h1>
+  <main class="container">
+    <div class="d-flex align-items-center p-3 my-3 rounded shadow-sm">
+      <img class="me-3" src="./pt/w_logo.png" alt="" width="70" height="70">
+      <div class="lh-1">
+        <h1 class="h6 mb-1 lh-1">W_P Co,Ltd</h1>
+        <small>Admin Profile One</small>
+      </div>
+    </div>
 
-            
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+      <h6 class="border-bottom pb-2 mb-0">Recent updates</h6>
+      <div class="d-flex text-body-secondary pt-3">
+        <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#007bff" /><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text>
+        </svg>
+        <p class="pb-3 mb-0 small lh-sm border-bottom">
+          <strong class="d-block text-gray-dark">@username</strong>
+          Some representative placeholder content, with some information about this user. Imagine this being some sort of status update, perhaps?
+        </p>
+      </div>
+      <div class="d-flex text-body-secondary pt-3">
+        <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#e83e8c" /><text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32</text>
+        </svg>
+        <p class="pb-3 mb-0 small lh-sm border-bottom">
+          <strong class="d-block text-gray-dark">@username</strong>
+          Some more representative placeholder content, related to this other user. Another status update, perhaps.
+        </p>
+      </div>
+      <div class="d-flex text-body-secondary pt-3">
+        <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#6f42c1" /><text x="50%" y="50%" fill="#6f42c1" dy=".3em">32x32</text>
+        </svg>
+        <p class="pb-3 mb-0 small lh-sm border-bottom">
+          <strong class="d-block text-gray-dark">@username</strong>
+          This user also gets some representative placeholder content. Maybe they did something interesting, and you really want to highlight this in the recent updates.
+        </p>
+      </div>
+      <small class="d-block text-end mt-3">
+        <a href="#">All updates</a>
+      </small>
+    </div>
 
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+      <h6 class="border-bottom pb-2 mb-0">Suggestions</h6>
+      <div class="d-flex text-body-secondary pt-3">
+        <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#007bff" /><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text>
+        </svg>
+        <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+          <div class="d-flex justify-content-between">
+            <strong class="text-gray-dark">Full Name</strong>
+            <a href="#">Follow</a>
+          </div>
+          <span class="d-block">@username</span>
+        </div>
+      </div>
+      <div class="d-flex text-body-secondary pt-3">
+        <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#007bff" /><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text>
+        </svg>
+        <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+          <div class="d-flex justify-content-between">
+            <strong class="text-gray-dark">Full Name</strong>
+            <a href="#">Follow</a>
+          </div>
+          <span class="d-block">@username</span>
+        </div>
+      </div>
+      <div class="d-flex text-body-secondary pt-3">
+        <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#007bff" /><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text>
+        </svg>
+        <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+          <div class="d-flex justify-content-between">
+            <strong class="text-gray-dark">Full Name</strong>
+            <a href="#">Follow</a>
+          </div>
+          <span class="d-block">@username</span>
+        </div>
+      </div>
+      <small class="d-block text-end mt-3">
+        <a href="#">All suggestions</a>
+      </small>
+    </div>
+  </main>
 
-
-
-
-
-
- <!-- <div class="container">
+  <!-- <div class="container">
         <div class="bg-light p-5 rounded mt-3">
             <h1>สวัสดี <?php echo $user['email']; ?></h1>
      <h2>ระดับผู้ใช้ <?php echo $user['level']; ?></h2> 
         </div>
     </div>  -->
-  
-   
 
-
-
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script src="../js/offcanvas-navbar.js"></script>
 </body>
+
 </html>

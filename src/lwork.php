@@ -146,24 +146,16 @@ $query = mysqli_query($objCon, $sql);
       <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+            <a class="nav-link active" aria-current="page" href="#">Link</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Notifications</a>
+            <a class="nav-link" href="#">Link</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Profile</a>
+            <a class="nav-link" href="#">Link</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Switch account</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Settings</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
+            <a class="nav-link" href="#">Link</a>
           </li>
         </ul>
         <form class="d-flex" role="search">
@@ -193,20 +185,20 @@ $query = mysqli_query($objCon, $sql);
 
         <table class="pb-3 mb-0 small lh-sm border-bottom table table-striped">
           <tr class="text-warning h8">
-            <td>Email</td>
+            <td hidden>Email</td>
             <td>วันลาที่จอง</td>
             <td>เหตุผลที่ลา</td>
-            <td>ความเห็นหัวหน้า</td>
+            <td hidden>ความเห็นหัวหน้า</td>
             <td>สถานะคำขอ</td>
           </tr>
 
           <?php foreach ($query as $data) { ?>
             <?php if ($user['email'] == $data['u_email']) { ?>
               <tr class="text-light ">
-                <th><?= $data['u_email'] ?></th>
+                <th hidden><?= $data['u_email'] ?></th>
                 <th><?= $data['leave_date'] ?></th>
                 <th><?= $data['leave_reason'] ?></th>
-                <th><?= $data['status_reason'] ?></th>
+                <th hidden><?= $data['status_reason'] ?></th>
                 <th><?php
                     if ($data['status_a'] == 'อนุมัติ') {
                       echo '<span style="color: green;">อนุมัติ</span>';
@@ -232,22 +224,29 @@ $query = mysqli_query($objCon, $sql);
 
           <div>
             <form method="POST" action="lwork_ac.php">
-              <table class="pb-3 mb-0 small lh-sm border-bottom table table-striped text-center">
-                <tr class="text-warning h8">
-                  <td hidden>Email</td>
-                  <td>วันที่ต้องการลา</td>
-                  <td>เหตุผลการลา</td>
-                  <td>ส่งคำขอ</td>
-                </tr>
+              <div class="pb-3 mb-0 small lh-sm border-bottom">
 
-                <tr class="text-light">
-                  <th hidden><input type="text" name="u_email" value="<?php echo $user['email']; ?>" readonly></th>
-                  <th><input type="date" id="leave_date" name="leave_date" required><br></th>
-                  <th><input id="leave_reason" name="leave_reason" required></input></th>
-                  <th><input onclick="return confirm('ยืนยันการส่งคำขอ')" class="btn-sm btn btn-outline-success" type="submit" value="ส่งคำขอ"></th>
-                  </th>
-                </tr>
-              </table>
+                <div hidden>Email
+                  <input type="text" name="u_email" value="<?php echo $user['email']; ?>" readonly>
+                </div>
+
+                <div class="mb-2">วันที่ลางาน
+                  <input type="date" id="leave_date" name="leave_date" required>
+                </div>
+
+                <div class="mb-2">ประเภทการลา
+                  <select id="leave_reason" name="leave_reason" required>
+                    <option selected disabled>เลือกประเภท</option>
+                    <option value="1">ลาป่วย</option>
+                    <option value="2">ลาพักร้อน</option>
+                    <option value="3">ลากิจ</option>
+                  </select>
+                </div>
+
+                <div class="mb-2">
+                  <input onclick="return confirm('ยืนยันการส่งคำขอ')" class="btn btn-outline-success btn-sm" type="submit" value="ส่งคำขอ">
+                </div>
+
             </form>
 
           </div>
