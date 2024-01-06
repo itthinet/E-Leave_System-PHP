@@ -210,9 +210,9 @@ $query = mysqli_query($objCon, $sql);
                         <div class="mb-2">
                             <select id="type_car" name="type_car" class="text-dark">
                                 <option selected disabled>---ประเภทรถ---</option>
-                                <option value="1">รถกระบะ กก3523</option>
-                                <option value="2">รถตู้ ขถ7846</option>
-                                <option value="3">รถเก๋ง จก0943</option>
+                                <option value="รถกระบะ กก3523">รถกระบะ กก3523</option>
+                                <option value="รถตู้ ขถ7846">รถตู้ ขถ7846</option>
+                                <option value="รถเก๋ง จก0943">รถเก๋ง จก0943</option>
                             </select>
                             <label for="type_car">เลือกรถ</label>
                         </div>
@@ -244,6 +244,34 @@ $query = mysqli_query($objCon, $sql);
                             <input onclick="return confirm('ยืนยันการส่งคำขอ')" class="btn-sm btn btn-outline-success" type="submit" value="ส่งคำขอ">
                         </div>
                     </form>
+                </div>
+            </div>
+
+            <div class="d-flex text-body-secondary pt-3">
+                <!-- ตาราง แสดง Data -->
+                <table class="pb-3 mb-0 small lh-sm border-bottom table table-striped text-center">
+                    <tr class="text-warning">
+                        <td>ประเภทรถ</td>
+                        <td>ผู้ใช้งาน</td>
+                        <td>ใช้งานเสร็จ</td>
+                    </tr>
+
+                    <?php foreach ($query as $data) { ?>
+                        <?php if ($user['email'] == $data['users']) { ?>
+                            <tr class="text-light">
+                                <form method="POST" action="car_success.php">
+                                    <th name="type_car" id="type_car"><?= $data['type_car'] ?></th>
+                                    <th><?= $data['users'] ?></th>
+                                    <th>
+                                        <button type="submit" class="btn btn-sm btn-danger">สิ้นสุด</button>
+                                    </th>
+                                </form>
+                            </tr>
+                        <?php } ?>
+                    <?php } ?>
+                </table>
+                <!-- END ตาราง แสดง data -->
+            </div>
     </main>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/offcanvas-navbar.js"></script>
