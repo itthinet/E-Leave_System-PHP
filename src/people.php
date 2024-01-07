@@ -226,19 +226,19 @@ $query = mysqli_query($objCon, $sql);
         <!-- ตาราง แสดง database -->
         <table class="pb-3 mb-0 small lh-sm border-bottom table table-striped">
           <tr class="pb-3 mb-0 small lh-sm table-striped">
-            <td class="w-25" hidden>Email</td>
+            <td class="w-25" >Email</td>
             <td class="w-25 text-center">Name</td>
             <td class="text-center" hidden>Password</td>
-            <td hidden>Level</td>
+            <td >Level</td>
             <td class="text-center">Delete</td>
             <td class="text-center">Edit</td>
           </tr>
           <?php foreach ($query as $data) { ?>
             <tr class="pb-3 mb-0 small lh-sm table-striped">
-              <th hidden><?= $data['u_email'] ?></th>
+              <th ><?= $data['u_email'] ?></th>
               <th class="text-center"><?= $data['u_name'] ?></th>
               <th class="text-center" hidden><?php echo $data['u_password'] ?></th>
-              <th hidden><?= $data['u_level'] ?></th>
+              <th ><?= $data['u_level'] ?></th>
               <th class="text-center">
                 <form action="delete.php" method="post">
                   <input type="hidden" name="email" value="<?= $data['u_email'] ?>">

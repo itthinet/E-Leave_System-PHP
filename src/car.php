@@ -193,7 +193,15 @@ $query = mysqli_query($objCon, $sql);
                     <?php foreach ($query as $data) { ?>
                         <tr class="text-light ">
                             <th><?= $data['type_car'] ?></th>
-                            <th><?= $data['status_car'] ?></th>
+                            <th><?php
+                                if ($data['status_car'] == 'ว่าง') {
+                                    echo '<span style="color: green;">ว่าง</span>';
+                                } elseif ($data['status_car'] == 'ถูกใช้งาน') {
+                                    echo '<span style="color: red;">ถูกใช้งาน</span>';
+                                } else {
+                                    echo $data['status_car'];
+                                }
+                                ?></th>
                             <th><?= $data['users'] ?></th>
                             </th>
                         </tr>
@@ -236,7 +244,7 @@ $query = mysqli_query($objCon, $sql);
 
                         <div class="mb-2">
                             <label for="status_car">จองรถ</label>
-                            <input id="status_car" type="checkbox" name="status_car" value="จอง">
+                            <input id="status_car" type="checkbox" name="status_car" value="ถูกใช้งาน">
                         </div>
 
                         <div class="mb-2">
@@ -260,8 +268,29 @@ $query = mysqli_query($objCon, $sql);
                         <?php if ($user['email'] == $data['users']) { ?>
                             <tr class="text-light">
                                 <form method="POST" action="car_success.php">
-                                    <th name="type_car" id="type_car"><?= $data['type_car'] ?></th>
+                                    <th><?= $data['type_car'] ?></th>
                                     <th><?= $data['users'] ?></th>
+
+                                    <div class="mb-2">
+                                        <input hidden id="type_car" type="type_car" name="type_car" value="<?= $data['type_car'] ?>" placeholder="<?= $data['type_car'] ?>">
+                                    </div>
+                                    <div hidden class="mb-2">
+                                        <input id="date_car" type="date" name="date_car">
+                                    </div>
+
+                                    <div hidden class="mb-2">
+                                        <input id="time-car1" type="time" name="time_car1">
+                                        <input id="time-car2" type="time" name="time_car2">
+                                    </div>
+
+                                    <div hidden class="mb-2">
+                                        <input id="user" type="text" name="users">
+                                    </div>
+
+                                    <div hidden class="mb-2">
+                                        <input id="status_car" name="status_car" value="ว่าง">
+                                    </div>
+
                                     <th>
                                         <button type="submit" class="btn btn-sm btn-danger">สิ้นสุด</button>
                                     </th>

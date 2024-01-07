@@ -207,7 +207,6 @@ $query = mysqli_query($objCon, $sql);
                     } else {
                       echo $data['status_a'];
                     }
-
                     ?></th>
                 </th>
               </tr>

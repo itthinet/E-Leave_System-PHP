@@ -41,10 +41,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn = connectDB();
 
     $sql = "SELECT * FROM car_db WHERE type_car = '$type_car'";
-    $result = $conn->query($sql);
+    $sql2 = "SELECT * FROM car_db";
+    $sql3 = "SELECT * FROM user";
+    $query_user = mysqli_query($conn, $sql3);
+    $query = mysqli_query($conn, $sql2);
+    while ($user_user = mysqli_fetch_array($query_user)) {
+    while ($sta_car = mysqli_fetch_array($query)) {
+        $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-        $updateSql = "UPDATE 
+        if ($sta_car['status_car'] === "ว่าง" && $type_car ==  $sta_car['type_car']) {
+            if ($result->num_rows > 0) {
+                $updateSql = "UPDATE 
         car_db 
         SET 
         date_car = '$date_car', 
@@ -54,17 +61,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         users = '$users' 
         WHERE 
         type_car = '$type_car'";
-        if ($conn->query($updateSql) === TRUE) {
-            // อัปเดตสำเร็จ
-            echo '<script>alert("Data updated successfully");window.location="car.php";</script>';
+                if ($conn->query($updateSql) === TRUE) {
+                    // อัปเดตสำเร็จ
+                    echo '<script>alert("Data updated successfully");window.location="car.php";</script>';
+                } else {
+                    // อัปเดตไม่สำเร็จ
+                    echo '<script>alert("Error");window.location="car.php";</script>' . $conn->error;
+                }
+            } else {
+                // ไม่พบแถวที่ต้องการอัปเดต
+                echo "No rows found for the provided car: $type_car";
+            }
         } else {
-            // อัปเดตไม่สำเร็จ
-            echo '<script>alert("Error");window.location="car.php";</script>' . $conn->error;
+            echo '<script>alert("car not");window.location="car.php";</script>';
         }
-    } else {
-        // ไม่พบแถวที่ต้องการอัปเดต
-        echo "No rows found for the provided car: $type_car";
     }
+}
 
 
     /*     // ตรวจสอบว่าวันลาที่ผู้ใช้ต้องการจองซ้ำกับข้อมูลที่มีอยู่ในฐานข้อมูลหรือไม่
